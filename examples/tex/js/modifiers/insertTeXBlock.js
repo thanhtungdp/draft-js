@@ -14,7 +14,8 @@
 
 'use strict';
 
-import {
+import Draftjs, {
+    EditorState,
   AtomicBlockUtils,
   Entity,
 } from 'draft-js';
@@ -37,11 +38,17 @@ const examples = [
 
 export function insertTeXBlock(editorState) {
   const nextFormula = count++ % examples.length;
-  const entityKey = Entity.create(
-    'TOKEN',
-    'IMMUTABLE',
-    {content: examples[nextFormula]}
+  const contentState = editorState.getCurrentContent();
+  const contentStateWithEntity = contentState.createEntity(
+      'TOKEN',
+      'IMMUTABLE',
+      {content: examples[nextFormula]}
+  );
+  const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+  const newEditorState = EditorState.set(
+      editorState,
+      {currentContent: contentStateWithEntity}
   );
 
-  return AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+  return AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ');
 }

@@ -19,6 +19,7 @@ import TeXEditorExample from './components/TeXEditorExample';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+
 ReactDOM.render(
   <TeXEditorExample />,
   document.getElementById('target')

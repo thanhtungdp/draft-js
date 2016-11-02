@@ -123,7 +123,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         }
 
         _addImage() {
-          this._promptForMedia('image');
+          this._promptForMedia('image_good');
         }
 
         _addVideo() {
@@ -228,7 +228,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         let media;
         if (type === 'audio') {
           media = <Audio src={src} />;
-        } else if (type === 'image') {
+        } else if (type === 'image_good') {
           media = <Image src={src} />;
         } else if (type === 'video') {
           media = <Video src={src} />;
